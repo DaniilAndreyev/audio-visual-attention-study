@@ -19,6 +19,9 @@ def check_for_quit(win):
         safe_quit(win)
 
 
+def assign_condition_order():
+	return random.choice(config.CONDITIONS)
+
 # get participant info
 def get_participant_info():
 	info = {
@@ -68,7 +71,8 @@ def main():
 		print('Experiment cancelled.')
 		return
 
-	print(participant_info)
+	order = assign_condition_order()
+	print(f'Assigned order: {order}')
 
 	# Create window
 	win = create_window()
