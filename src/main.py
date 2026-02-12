@@ -1,6 +1,12 @@
+'''
+Main entry point for the Audio-Visual Attention Experiment.
+'''
+
 from psychopy import visual, event, gui
-import config
+import random
 import sys
+
+import config
 
 # helper functions
 def safe_quit(win):
