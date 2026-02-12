@@ -1,5 +1,5 @@
 """
-Config file that stores constants for the project
+Config file that stores constants for the Audio-Visual Attention Experiment
 """
 import os
 
