@@ -1,4 +1,4 @@
-from psychopy import visual, event
+from psychopy import visual, event, gui
 import config
 
 # helper functions
@@ -9,6 +9,25 @@ def safe_quit(win):
 def check_for_quit(win):
     if config.QUIT_KEY in event.getKeys():
         safe_quit(win)
+
+# participant info
+def get_participant_info():
+	while True:
+		info = {
+			'id': '',
+			'age': '',
+			'gender': ['Male', 'Female', 'Other']
+		}
+
+		dialog = gui.DlgFromDict(info, title='Participant Info')
+
+		if not dialog.OK:
+			return None
+
+		if info['id'].strip():
+			return info
+		gui.Dlg(title='Error', labelButtonOK='OK').addText('Some fields are empty').show()
+	
 
 # create window
 def create_window():
@@ -34,6 +53,17 @@ def show_placeholder(win):
         check_for_quit(win)
 
 def main():
+    
+    # Get participant info
+    participant_info = get_participant_info()
+    
+    if participant_info is None:
+        print('Experiment cancelled.')
+        return
+    
+    print(participant_info)
+    
+    # Create window
     win = create_window()
     
     show_placeholder(win)
