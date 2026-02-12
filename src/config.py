@@ -40,3 +40,9 @@ QUIT_KEY = "escape"
 QUIZ_KEYS = ["1", "2", "3", "4"]
 
 CONTINUE_KEY = "space"
+
+# conditions
+BLACK_FIRST = 'BLACK_FIRST'
+VIDEO_FIRST = 'VIDEO_FIRST'
+
+CONDITIONS = [BLACK_FIRST, VIDEO_FIRST]
