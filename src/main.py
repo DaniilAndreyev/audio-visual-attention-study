@@ -1,23 +1,14 @@
-'''
+"""
 Main entry point for the Audio-Visual Attention Experiment.
-'''
+"""
 
-from psychopy import visual, event, gui
+from psychopy import visual, event, gui, core
 import random
 import sys
 
 import config
-
-# helper functions
-def safe_quit(win):
-    if win:
-        win.close()
-    sys.exit()
-
-def check_for_quit(win):
-    if config.QUIT_KEY in event.getKeys():
-        safe_quit(win)
-
+import trials
+import utils
 
 def assign_condition_order():
 	return random.choice(config.CONDITIONS)
@@ -25,11 +16,11 @@ def assign_condition_order():
 # get participant info
 def get_participant_info():
 	info = {
-		'age': '',
-		'gender': ['Male', 'Female', 'Other']
+		"age": "",
+		"gender": ["Male", "Female", "Other"]
 	}
 
-	dialog = gui.DlgFromDict(info, title='Participant Info')
+	dialog = gui.DlgFromDict(info, title="Participant Info")
 
 	if not dialog.OK:
 		return None
@@ -43,24 +34,8 @@ def create_window():
 		size = config.WINDOW_SIZE,
 		fullscr = config.FULLSCREEN,
 		color = config.BACKGROUND_COLOR,
-		units = 'height',
+		units = "height",
 	)
-
-
-# placeholder for future
-def show_placeholder(win):
-    text = visual.TextStim(
-		win,
-		text = 'Experiment Running\nPress Esc to exit.',
-		color = config.TEXT_COLOR,
-		height = 0.03
-	)
-    
-    while True:
-        text.draw()
-        win.flip()
-        check_for_quit(win)
-
 
 def main():
 
@@ -68,22 +43,31 @@ def main():
 	participant_info = get_participant_info()
 
 	if participant_info is None:
-		print('Experiment cancelled.')
+		print("Experiment cancelled.")
 		return
 
 	order = assign_condition_order()
-	print(f'Assigned order: {order}')
+	print(f"Assigned order: {order}")
 
 	# Create window
 	win = create_window()
 
 
 	try:
-		show_placeholder(win)
-	except Exception as e:
-		print('Error: ', e)
-	finally:
-		safe_quit(win)
+		results = trials.run_full_experiment(
+			win,
+			participant_info,
+			order
+		)
 
-if __name__ == '__main__':
+		print("Experiment completed.")
+		print("Results:", results)
+
+	except Exception as e:
+		print("Error:", e)
+
+	finally:
+		utils.safe_quit(win)
+
+if __name__ == "__main__":
     main()
