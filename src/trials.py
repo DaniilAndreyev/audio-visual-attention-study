@@ -3,7 +3,7 @@ Handles Experiment flow
 '''
 
 import config
-import stimuli
+# import stimuli
 import ui
 from psychopy import core
 

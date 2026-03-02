@@ -2,31 +2,16 @@
 Main entry point for the Audio-Visual Attention Experiment.
 """
 
-from psychopy import visual, event, gui, core
+from psychopy import visual, gui
 import random
-import sys
 
 import config
 import trials
 import utils
+import ui
 
 def assign_condition_order():
 	return random.choice(config.CONDITIONS)
-
-# get participant info
-def get_participant_info():
-	info = {
-		"age": "",
-		"gender": ["Male", "Female", "Other"]
-	}
-
-	dialog = gui.DlgFromDict(info, title="Participant Info")
-
-	if not dialog.OK:
-		return None
-
-	return info
-
 
 # create window
 def create_window():
@@ -35,12 +20,15 @@ def create_window():
 		fullscr = config.FULLSCREEN,
 		color = config.BACKGROUND_COLOR,
 		units = "height",
+		allowStencil=True
 	)
 
 def main():
+    # Create window
+	win = create_window()
 
 	# Get participant info
-	participant_info = get_participant_info()
+	participant_info = ui.collect_participant_info(win)
 
 	if participant_info is None:
 		print("Experiment cancelled.")
@@ -48,9 +36,6 @@ def main():
 
 	order = assign_condition_order()
 	print(f"Assigned order: {order}")
-
-	# Create window
-	win = create_window()
 
 
 	try:
