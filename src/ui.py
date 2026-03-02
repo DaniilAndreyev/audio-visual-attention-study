@@ -43,10 +43,10 @@ def collect_participant_info(win):
     gender_slider = visual.Slider(
         win,
         fillColor="green",
-        ticks=[1, 2, 3],
-        labels=["Male", "Female", "Prefer not to say"],
+        ticks=[1, 2, 3, 4, 5],
+        labels=["Male", "Female", "Non-Binary", "Other", "Prefer not to say"],
         pos=(0, -0.1),
-        size=(0.6, 0.06),
+        size=(0.8, 0.06),
         granularity=1,
         style="radio"
     )
