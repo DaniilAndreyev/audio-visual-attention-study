@@ -18,9 +18,7 @@ def check_for_quit(win):
 def save_participant_data(participant_info, order, results):
     participant_id = datetime.now().strftime("%Y%m%d_%H%M%S")
     
-    csv_file = os.path.join(config.DATA_DIR, "participant_data.csv")
-    
-    file_exists = os.path.isfile(csv_file)
+    file_exists = os.path.isfile(config.PARTICIPANT_DATA)
     
     data_row = {
         'participant_id': participant_id,
@@ -32,7 +30,7 @@ def save_participant_data(participant_info, order, results):
         'score_video': results.get('score_video', '')
     }
     
-    with open(csv_file, 'a', newline='', encoding='utf-8') as f:
+    with open(config.PARTICIPANT_DATA, 'a', newline='', encoding='utf-8') as f:
         fieldnames = ['participant_id', 'timestamp', 'age', 'gender', 
                      'condition_order', 'score_black', 'score_video']
         writer = csv.DictWriter(f, fieldnames=fieldnames)
