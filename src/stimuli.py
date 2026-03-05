@@ -14,8 +14,7 @@ def play_audio(win, audio_file):
     clock = core.Clock()
 
     while clock.getTime() < story.getDuration():
-        if "escape" in event.getKeys():
-            core.quit()
+        utils.check_for_quit(win)
         core.wait(0.01)
 
     return True
