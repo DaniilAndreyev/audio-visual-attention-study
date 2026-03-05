@@ -1,11 +1,10 @@
 '''
 Handles Experiment flow
 '''
-
-import config
-# import stimuli
-import ui
 from psychopy import core
+import config
+import stimuli
+import ui
 
 def run_full_experiment(win, participant_info, order):
 
@@ -14,24 +13,24 @@ def run_full_experiment(win, participant_info, order):
 		'score_video': None
 	}
 
-	ui.show_instructions(win)
+	# ui.show_instructions(win)
 
 	if order == config.BLACK_FIRST:
-		run_black_condition(win)
-		run_video_condition(win)
-
+		results['score_black'] = run_black_condition(win)
+		results['score_video'] = run_video_condition(win)
 	else:
-		run_video_condition(win)
-		run_black_condition(win)
-	
+		results['score_video'] = run_video_condition(win)
+		results['score_black'] = run_black_condition(win)
+
+
 	return results
 
 def run_black_condition(win):
-	return stimuli.play_audio(win, config.STORY_BLACK_AUDIO)
+	stimuli.play_audio(win, config.STORY_BLACK_AUDIO)
+	score = 0; # ui.run_quiz(win, config.QUIZ_BLACK_FILE)
+	return score
 
 def run_video_condition(win):
-	return stimuli.play_video_with_autdio(
-		win,
-		config.VIDEO_FILE,
-		config.STORY_VIDEO_AUDIO
-	)
+	stimuli.play_video_with_audio(win, config.VIDEO_FILE, config.STORY_VIDEO_AUDIO)
+	score = 0; # ui.run_quiz(win, config.QUIZ_VIDEO_FILE)
+	return score

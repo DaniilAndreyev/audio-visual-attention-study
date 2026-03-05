@@ -12,7 +12,7 @@ DATA_DIR = os.path.join(REPO_DIR, "data")
 
 AUDIO_DIR = os.path.join(STIMULI_DIR, "audio")
 VIDEO_DIR = os.path.join(STIMULI_DIR, "video")
-QUIZ_DIR = os.path.join(STIMULI_DIR,)
+QUIZ_DIR = os.path.join(STIMULI_DIR, "quiz")
 
 
 # stimuli files
