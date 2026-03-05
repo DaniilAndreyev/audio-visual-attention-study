@@ -1,40 +1,47 @@
 """
 Handles Stimulus presentation (audio/video)
 """
-from psychopy import visual, sound, core
+from psychopy import visual, sound, core, event
 import utils
 
 def play_audio(win, audio_file):
-	win.color = "black"
-	win.flip()
+    win.color = "black"
+    win.flip()
 
-	story = sound.Sound(audio_file)
+    story = sound.Sound(audio_file)
+    story.play()
 
-	story.play()
+    clock = core.Clock()
 
-	core.wait(story.getDuration())
+    while clock.getTime() < story.getDuration():
+        if "escape" in event.getKeys():
+            core.quit()
+        core.wait(0.01)
 
-	return True
+    return True
 
 def play_video_with_audio(win, video_file, audio_file):
-	movie = visual.MovieStim3(
+	from psychopy import core
+
+	movie = visual.MovieStim(
 		win,
 		filename=video_file,
-		size=(1, 1),
-		flipVert=False,
-		flipHoriz=False
+		size=(2, 2),
+		units='norm'
 	)
-	
-	
+
 	story_audio = sound.Sound(audio_file)
+	audio_duration = story_audio.getDuration()
 
 	story_audio.play()
+	movie.setAutoDraw(True)
 
-	while movie.status != visual.FINISHED:
+	clock = core.Clock()
+	clock.reset()
 
-		movie.draw()
+	while clock.getTime() < audio_duration:
 		win.flip()
+		utils.check_for_quit(win)
 
-		utils.check_for_quit()
-
+	movie.setAutoDraw(False)
 	return True

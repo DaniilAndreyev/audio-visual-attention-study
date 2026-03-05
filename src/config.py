@@ -19,7 +19,7 @@ QUIZ_DIR = os.path.join(STIMULI_DIR, "quiz")
 STORY_BLACK_AUDIO = os.path.join(AUDIO_DIR, "black_story.wav")
 STORY_VIDEO_AUDIO = os.path.join(AUDIO_DIR, "video_story.wav")
 
-VIDEO_FILE = os.path.join(VIDEO_DIR, "video_psychopy.mp4")
+VIDEO_FILE = os.path.join(VIDEO_DIR, "video.mp4")
 
 QUIZ_BLACK_FILE = os.path.join(QUIZ_DIR, "black_quiz.csv")
 QUIZ_VIDEO_FILE = os.path.join(QUIZ_DIR, "video_quiz.csv")
