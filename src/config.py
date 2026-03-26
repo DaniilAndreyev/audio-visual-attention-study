@@ -1,31 +1,30 @@
 """
 Config file that stores constants for the Audio-Visual Attention Experiment
 """
-import os
+from pathlib import Path
 
 
-# directory paths
-REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ../../__file__
+REPO_DIR = Path(__file__).resolve().parent.parent
 
-STIMULI_DIR = os.path.join(REPO_DIR, "stimuli")
-DATA_DIR = os.path.join(REPO_DIR, "data")
+STIMULI_DIR = REPO_DIR / "stimuli"
+DATA_DIR = REPO_DIR / "data"
 
-AUDIO_DIR = os.path.join(STIMULI_DIR, "audio")
-VIDEO_DIR = os.path.join(STIMULI_DIR, "video")
-QUIZ_DIR = os.path.join(STIMULI_DIR, "quiz")
+AUDIO_DIR = STIMULI_DIR / "audio"
+VIDEO_DIR = STIMULI_DIR / "video"
+QUIZ_DIR = STIMULI_DIR / "quiz"
 
 
 # stimuli files
-STORY_BLACK_AUDIO = os.path.join(AUDIO_DIR, "black_story.wav")
-STORY_VIDEO_AUDIO = os.path.join(AUDIO_DIR, "video_story.wav")
+STORY_BLACK_AUDIO = str(AUDIO_DIR / "black_story.wav")
+STORY_VIDEO_AUDIO = str(AUDIO_DIR / "video_story.wav")
 
-VIDEO_FILE = os.path.join(VIDEO_DIR, "video.mp4")
+VIDEO_FILE = str(VIDEO_DIR / "video.mp4")
 
-QUIZ_BLACK_FILE = os.path.join(QUIZ_DIR, "black_quiz.csv")
-QUIZ_VIDEO_FILE = os.path.join(QUIZ_DIR, "video_quiz.csv")
+QUIZ_BLACK_FILE = str(QUIZ_DIR / "black_quiz.csv")
+QUIZ_VIDEO_FILE = str(QUIZ_DIR / "video_quiz.csv")
 
 # data
-PARTICIPANT_DATA = os.path.join(DATA_DIR, "participant_data.csv")
+PARTICIPANT_DATA = str(DATA_DIR / "participant_data.csv")
 
 # screen config
 WINDOW_SIZE = (1920, 1080)
@@ -44,7 +43,7 @@ QUIZ_KEYS = ["1", "2", "3", "4"]
 CONTINUE_KEY = "space"
 
 # conditions
-BLACK_FIRST = 'BLACK_FIRST'
-VIDEO_FIRST = 'VIDEO_FIRST'
+BLACK_FIRST = "BLACK_FIRST"
+VIDEO_FIRST = "VIDEO_FIRST"
 
 CONDITIONS = [BLACK_FIRST, VIDEO_FIRST]
