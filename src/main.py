@@ -2,63 +2,58 @@
 Main entry point for the Audio-Visual Attention Experiment.
 """
 
-from psychopy import visual, gui
 import random
 
+from psychopy import visual
+
 import config
+import quiz
 import trials
 import utils
 import ui
 
-def assign_condition_order():
-	return random.choice(config.CONDITIONS)
 
-# create window
+def assign_condition_order():
+    return random.choice(config.CONDITIONS)
+
+
 def create_window():
-	return visual.Window(
-		size = config.WINDOW_SIZE,
-		fullscr = config.FULLSCREEN,
-		color = config.BACKGROUND_COLOR,
-		units = "height",
-		allowStencil=True
-	)
+    return visual.Window(
+        size=config.WINDOW_SIZE,
+        fullscr=config.FULLSCREEN,
+        color=config.BACKGROUND_COLOR,
+        units="height",
+        allowStencil=True,
+    )
+
 
 def main():
-    # Create window
-	win = create_window()
- 
-	
-	ui.show_consent_form(win)
+    win = create_window()
 
-	# Get participant info
-	participant_info = ui.collect_participant_info(win)
+    try:
+        ui.show_consent_form(win)
+        participant_info = ui.collect_participant_info(win)
 
-	if participant_info is None:
-		print("Experiment cancelled.")
-		return
+        if participant_info is None:
+            print("Experiment cancelled.")
+            return
 
-	order = assign_condition_order()
-	print(f"Assigned order: {order}")
+        order = assign_condition_order()
+        print(f"Assigned order: {order}")
 
+        results = trials.run_full_experiment(win, participant_info, order)
 
-	try:
-		results = trials.run_full_experiment(
-			win,
-			participant_info,
-			order
-		)
+        print("Experiment completed.")
+        print("Results:", results)
 
-		print("Experiment completed.")
-		print("Results:", results)
+        participant_id = quiz.save_participant_data(participant_info, order, results)
+        print(f"Participant ID: {participant_id}")
 
-		participant_id = quiz.save_participant_data(participant_info, order, results)
-		print(f"Participant ID: {participant_id}")
+    except Exception as error:
+        print("Error:", error)
 
-	except Exception as e:
-		print("Error:", e)
-
-	finally:
-		utils.safe_quit(win)
+    finally:
+        utils.safe_quit(win)
 
 if __name__ == "__main__":
     main()

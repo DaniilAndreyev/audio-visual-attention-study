@@ -1,9 +1,8 @@
-from psychopy import event, core
 import sys
-import csv
-import os
-from datetime import datetime
+from psychopy import core, event
+
 import config
+
 
 def safe_quit(win):
     if win:
