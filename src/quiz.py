@@ -2,10 +2,11 @@
 Handles quiz logic (loading, presenting, scoring)
 """
 
-import csv
 from psychopy import visual, event, core
-from psychopy.constants import FINISHED
 import config
+import csv
+import datetime
+import os
 
 def run_quiz(win, quiz_file):
     questions = load_quiz(quiz_file)
@@ -68,3 +69,43 @@ def render_question(win, q):
         for key in keys:
             if key in config.QUIZ_KEYS:
                 return key == q["correct"]
+
+def save_participant_data(participant_info, order, results):
+    file_exists = os.path.isfile(config.PARTICIPANT_DATA)
+    
+    participant_id = generate_participant_id(config.PARTICIPANT_DATA)
+    
+    data_row = {
+        'participant_id': participant_id,
+        'date': datetime.now().strftime("%Y-%m-%d"),
+        'age': participant_info.get('age', ''),
+        'gender': participant_info.get('gender', ''),
+        'condition_order': order,
+        'score_black': results.get('score_black', ''),
+        'score_video': results.get('score_video', '')
+    }
+    
+    with open(config.PARTICIPANT_DATA, 'a', newline='', encoding='utf-8') as f:
+        fieldnames = ['participant_id', 'date', 'age', 'gender', 
+                     'condition_order', 'score_black', 'score_video']
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        
+        if not file_exists:
+            writer.writeheader()
+        
+        writer.writerow(data_row)
+    
+    print(f"Data saved for participant {participant_id}")
+    return participant_id
+
+
+def generate_participant_id(file_path):
+    if not os.path.exists(file_path):
+        return "P001"
+
+    with open(file_path, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+
+    next_id = len(rows) + 1
+    return f"P{next_id:03d}"
