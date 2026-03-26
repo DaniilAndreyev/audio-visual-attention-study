@@ -83,3 +83,93 @@ def collect_participant_info(win):
                         "age": age_box.text.strip(),
                         "gender": gender_slider.getRating()
                     }
+
+def show_consent_form(win):
+    instructions = visual.TextStim(
+		win,
+		text = """
+CONSENT TO PARTICIPATE IN A RESEARCH STUDY
+
+You are invited to participate in a research study about attention and memory.
+
+In this study, you will listen to 2 short stories and then answer a few questions about what you remember.
+
+The experiment will take approximately 5-10 minutes to complete.
+
+Your participation is completely voluntary. You may stop the experiment at any time without any penalty.
+
+Your responses will remain anonymous and will only be used for research purposes.
+
+By continuing, you confirm that you understand the information above and agree to participate in this study.
+
+Press SPACE to agree and continue.
+Press ESC to exit the experiment.
+            """,
+		color = config.TEXT_COLOR,
+		height = 0.03,
+		units = "height"
+	)
+    
+    while True:
+        instructions.draw()
+        win.flip()
+
+        keys = event.getKeys()
+        if config.QUIT_KEY in keys:
+            utils.safe_quit(win)
+        if config.CONTINUE_KEY in keys:
+            return
+
+def show_listening_instructions(win):
+    instructions = visual.TextStim(
+		win,
+		text = """
+You will now listen to a short story.
+
+Please listen carefully to the story while it plays.
+You will answer 20 questions about it afterward.
+
+Press SPACE to begin.
+            """,
+		color = config.TEXT_COLOR,
+		height = 0.03,
+		units = "height"
+	)
+    
+    while True:
+        instructions.draw()
+        win.flip()
+
+        keys = event.getKeys()
+        if config.QUIT_KEY in keys:
+            utils.safe_quit(win)
+        if config.CONTINUE_KEY in keys:
+            return
+
+def show_quiz_instructions(win):
+    instructions = visual.TextStim(
+		win,
+		text = """
+You will now complete a short quiz about the story you just heard.
+
+Please answer each question based on your memory of the story.
+If you are unsure of an answer, select the option that seems most accurate.
+
+Use the number keys (1-4) to select your answer.
+
+Press SPACE to begin the quiz.
+            """,
+		color = config.TEXT_COLOR,
+		height = 0.03,
+		units = "height"
+	)
+    
+    while True:
+        instructions.draw()
+        win.flip()
+
+        keys = event.getKeys()
+        if config.QUIT_KEY in keys:
+            utils.safe_quit(win)
+        if config.CONTINUE_KEY in keys:
+            return
