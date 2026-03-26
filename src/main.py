@@ -26,6 +26,9 @@ def create_window():
 def main():
     # Create window
 	win = create_window()
+ 
+	
+	ui.show_consent_form(win)
 
 	# Get participant info
 	participant_info = ui.collect_participant_info(win)
@@ -48,7 +51,7 @@ def main():
 		print("Experiment completed.")
 		print("Results:", results)
 
-		participant_id = utils.save_participant_data(participant_info, order, results)
+		participant_id = quiz.save_participant_data(participant_info, order, results)
 		print(f"Participant ID: {participant_id}")
 
 	except Exception as e:
