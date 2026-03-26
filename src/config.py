@@ -24,6 +24,8 @@ VIDEO_FILE = os.path.join(VIDEO_DIR, "video.mp4")
 QUIZ_BLACK_FILE = os.path.join(QUIZ_DIR, "black_quiz.csv")
 QUIZ_VIDEO_FILE = os.path.join(QUIZ_DIR, "video_quiz.csv")
 
+# data
+PARTICIPANT_DATA = os.path.join(DATA_DIR, "participant_data.csv")
 
 # screen config
 WINDOW_SIZE = (1920, 1080)

@@ -48,6 +48,9 @@ def main():
 		print("Experiment completed.")
 		print("Results:", results)
 
+		participant_id = utils.save_participant_data(participant_info, order, results)
+		print(f"Participant ID: {participant_id}")
+
 	except Exception as e:
 		print("Error:", e)
 
