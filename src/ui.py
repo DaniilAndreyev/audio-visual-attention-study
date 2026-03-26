@@ -88,22 +88,22 @@ def show_consent_form(win):
     instructions = visual.TextStim(
 		win,
 		text = """
-CONSENT TO PARTICIPATE IN A RESEARCH STUDY
+            CONSENT TO PARTICIPATE IN A RESEARCH STUDY
 
-You are invited to participate in a research study about attention and memory.
+            You are invited to participate in a research study about attention and memory.
 
-In this study, you will listen to 2 short stories and then answer a few questions about what you remember.
+            In this study, you will listen to 2 short stories and then answer a few questions about what you remember.
 
-The experiment will take approximately 5-10 minutes to complete.
+            The experiment will take approximately 5-10 minutes to complete.
 
-Your participation is completely voluntary. You may stop the experiment at any time without any penalty.
+            Your participation is completely voluntary. You may stop the experiment at any time without any penalty.
 
-Your responses will remain anonymous and will only be used for research purposes.
+            Your responses will remain anonymous and will only be used for research purposes.
 
-By continuing, you confirm that you understand the information above and agree to participate in this study.
+            By continuing, you confirm that you understand the information above and agree to participate in this study.
 
-Press SPACE to agree and continue.
-Press ESC to exit the experiment.
+            Press SPACE to agree and continue.
+            Press ESC to exit the experiment.
             """,
 		color = config.TEXT_COLOR,
 		height = 0.03,
@@ -150,14 +150,14 @@ def show_quiz_instructions(win):
     instructions = visual.TextStim(
 		win,
 		text = """
-You will now complete a short quiz about the story you just heard.
+            You will now complete a short quiz about the story you just heard.
 
-Please answer each question based on your memory of the story.
-If you are unsure of an answer, select the option that seems most accurate.
+            Please answer each question based on your memory of the story.
+            If you are unsure of an answer, select the option that seems most accurate.
 
-Use the number keys (1-4) to select your answer.
+            Use the number keys (1-4) to select your answer.
 
-Press SPACE to begin the quiz.
+            Press SPACE to begin the quiz.
             """,
 		color = config.TEXT_COLOR,
 		height = 0.03,
