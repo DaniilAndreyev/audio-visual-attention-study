@@ -5,6 +5,7 @@ from psychopy import core
 import config
 import stimuli
 import quiz
+import ui
 
 def run_full_experiment(win, participant_info, order):
 
@@ -12,8 +13,6 @@ def run_full_experiment(win, participant_info, order):
 		'score_black': None,
 		'score_video': None
 	}
-
-	# ui.show_instructions(win)
 
 	if order == config.BLACK_FIRST:
 		results['score_black'] = run_black_condition(win)
@@ -26,9 +25,13 @@ def run_full_experiment(win, participant_info, order):
 	return results
 
 def run_black_condition(win):
-	# stimuli.play_audio(win, config.STORY_BLACK_AUDIO)
+	ui.show_listening_instructions(win)
+	stimuli.play_audio(win, config.STORY_BLACK_AUDIO)
+	ui.show_quiz_instructions(win)
 	return quiz.run_quiz(win, config.QUIZ_BLACK_FILE)
 
 def run_video_condition(win):
-	# stimuli.play_video_with_audio(win, config.VIDEO_FILE, config.STORY_VIDEO_AUDIO)
+	ui.show_listening_instructions(win)
+	stimuli.play_video_with_audio(win, config.VIDEO_FILE, config.STORY_VIDEO_AUDIO)
+	ui.show_quiz_instructions(win)
 	return quiz.run_quiz(win, config.QUIZ_VIDEO_FILE)
