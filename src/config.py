@@ -18,7 +18,7 @@ QUIZ_DIR = STIMULI_DIR / "quiz"
 STORY_BLACK_AUDIO = str(AUDIO_DIR / "black_story.wav")
 STORY_VIDEO_AUDIO = str(AUDIO_DIR / "video_story.wav")
 
-VIDEO_FILE = str(VIDEO_DIR / "video.mp4")
+VIDEO_FILE = str(VIDEO_DIR / "surf_study.mp4")
 
 QUIZ_BLACK_FILE = str(QUIZ_DIR / "black_quiz.csv")
 QUIZ_VIDEO_FILE = str(QUIZ_DIR / "video_quiz.csv")
