@@ -66,7 +66,7 @@ def main():
 
     finally:
         os.system("cls" if os.name == "nt" else "clear")
-        print(FINAL_MESSAGE)
+        print(("\n" * 5) + FINAL_MESSAGE + ("\n" * 5), flush=True)
         utils.safe_quit(win)
         
         
