@@ -38,7 +38,7 @@ For each condition, participants listen/watch a story and complete a 20-question
 
 ## Requirements
 
-- Python 3.10+
+- Python 3.10
 - [PsychoPy](https://www.psychopy.org/)
 
 Install dependencies in your preferred environment:
