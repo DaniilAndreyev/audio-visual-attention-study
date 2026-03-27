@@ -9,6 +9,7 @@ For each condition, participants listen/watch a story and complete a 20-question
 
 ## Project layout
 
+```
 .
 ├── data                              # participant output CSV files
 ├── docs                              # project documentation
@@ -33,6 +34,7 @@ For each condition, participants listen/watch a story and complete a 20-question
     │   └── video_quiz.csv            # quiz questions for video condition
     └── video                         # video stimulus files
         └── video.mp4                 # primary video used in the video condition
+```
 
 ## Requirements
 
