@@ -2,15 +2,27 @@
 Main entry point for the Audio-Visual Attention Experiment.
 """
 
+import os
 import random
 
-from psychopy import visual
+from psychopy import logging, visual
 
 import config
 import quiz
 import trials
 import utils
 import ui
+
+logging.console.setLevel(logging.ERROR)
+
+FINAL_MESSAGE = r"""
+  _____ _                 _                           __                               _   _      _             _   _                _______ 
+ |_   _| |__   __ _ _ __ | | __  _   _  ___  _   _   / _| ___  _ __   _ __   __ _ _ __| |_(_) ___(_)_ __   __ _| |_(_)_ __   __ _   / /___ / 
+   | | | '_ \ / _` | '_ \| |/ / | | | |/ _ \| | | | | |_ / _ \| '__| | '_ \ / _` | '__| __| |/ __| | '_ \ / _` | __| | '_ \ / _` | / /  |_ \ 
+   | | | | | | (_| | | | |   <  | |_| | (_) | |_| | |  _| (_) | |    | |_) | (_| | |  | |_| | (__| | |_) | (_| | |_| | | | | (_| | \ \ ___) |
+   |_| |_| |_|\__,_|_| |_|_|\_\  \__, |\___/ \__,_| |_|  \___/|_|    | .__/ \__,_|_|   \__|_|\___|_| .__/ \__,_|\__|_|_| |_|\__, |  \_\____/ 
+                                 |___/                               |_|                           |_|                      |___/            
+"""
 
 
 def assign_condition_order():
@@ -53,7 +65,11 @@ def main():
         print("Error:", error)
 
     finally:
+        os.system("cls" if os.name == "nt" else "clear")
+        print(FINAL_MESSAGE)
         utils.safe_quit(win)
+        
+        
 
 if __name__ == "__main__":
     main()
