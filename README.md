@@ -33,7 +33,7 @@ For each condition, participants listen/watch a story and complete a 20-question
     │   ├── black_quiz.csv            # quiz questions for black/audio condition
     │   └── video_quiz.csv            # quiz questions for video condition
     └── video                         # video stimulus files
-        └── video.mp4                 # primary video used in the video condition
+        └── surf_study.mp4            # primary video used in the video condition
 ```
 
 ## Requirements
