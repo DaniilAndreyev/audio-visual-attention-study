@@ -4,6 +4,7 @@ Handles quiz logic (loading, presenting, scoring)
 
 import csv
 import os
+import re
 from datetime import datetime
 
 from psychopy import core, event, visual
@@ -119,7 +120,20 @@ def generate_participant_id(file_path):
 
     with open(file_path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
-        rows = list(reader)
+        max_numeric_id = 0
 
-    next_id = len(rows) + 1
+        for row in reader:
+            participant_id = (row.get("participant_id") or "").strip()
+            match = re.fullmatch(r"P(\d+)", participant_id)
+
+            if match:
+                max_numeric_id = max(max_numeric_id, int(match.group(1)))
+
+    if max_numeric_id == 0:
+        # Fallback for malformed legacy files with rows but no valid participant_id values.
+        with open(file_path, "r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            max_numeric_id = sum(1 for _ in reader)
+
+    next_id = max_numeric_id + 1
     return f"P{next_id:03d}"
